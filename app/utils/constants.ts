@@ -8,7 +8,9 @@ export const DEFAULT_MODEL = 'claude-3-5-sonnet-20240620';
 export const DEFAULT_PROVIDER = 'Anthropic';
 
 const staticModels: ModelInfo[] = [
+  { name: 'claude-3-5-sonnet-latest', label: 'Claude 3.5 Sonnet (Latest)', provider: 'Anthropic' },
   { name: 'claude-3-5-sonnet-20240620', label: 'Claude 3.5 Sonnet', provider: 'Anthropic' },
+  { name: 'claude-3-5-sonnet-20241022', label: 'Claude 3.5 Sonnet (New)', provider: 'Anthropic' },
   { name: 'gpt-4o', label: 'GPT-4o', provider: 'OpenAI' },
   { name: 'anthropic/claude-3.5-sonnet', label: 'Anthropic: Claude 3.5 Sonnet (OpenRouter)', provider: 'OpenRouter' },
   { name: 'anthropic/claude-3-haiku', label: 'Anthropic: Claude 3 Haiku (OpenRouter)', provider: 'OpenRouter' },
