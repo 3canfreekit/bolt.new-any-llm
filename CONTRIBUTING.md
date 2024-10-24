@@ -88,11 +88,34 @@ pnpm run dev
 
 **Note**: You will need Google Chrome Canary to run this locally if you use Chrome! It's an easy install and a good browser for web development anyway.
 
-## Questions?
+## Testing
 
-For any questions about contributing, please:
-1. Check existing documentation
-2. Search through issues
-3. Create a new issue with the question label
+Run the test suite with:
 
-Thank you for contributing to Bolt.new! 🚀
+```bash
+pnpm test
+```
+
+## Deployment
+
+To deploy the application to Cloudflare Pages:
+
+```bash
+pnpm run deploy
+```
+
+Make sure you have the necessary permissions and Wrangler is correctly configured for your Cloudflare account.
+
+## Docker Dev
+
+To build docker image 
+
+```
+docker build -t bolt-ai .
+```
+
+To run bolt dev in docker(Add ANTHROPIC_API_KEY=XXX before running)
+
+```
+docker run -p 5173:5173 --env-file .env.local bolt-ai 
+```
