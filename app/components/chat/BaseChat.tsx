@@ -10,7 +10,9 @@ import { classNames } from '~/utils/classNames';
 import { MODEL_LIST, DEFAULT_PROVIDER } from '~/utils/constants';
 import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
+import { LastSavedIndicator } from './LastSavedIndicator.client';
 import { useState } from 'react';
+import { ImageUpload } from './ImageUpload';
 
 import styles from './BaseChat.module.scss';
 
@@ -83,6 +85,8 @@ interface BaseChatProps {
   sendMessage?: (event: React.UIEvent, messageInput?: string) => void;
   handleInputChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   enhancePrompt?: () => void;
+  imageFile?: File | null;
+  onImageUpload?: (file: File) => void;
 }
 
 export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
@@ -104,6 +108,8 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
       handleInputChange,
       enhancePrompt,
       handleStop,
+      imageFile,
+      onImageUpload,
     },
     ref,
   ) => {
@@ -229,6 +235,10 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                           </>
                         )}
                       </IconButton>
+                      <ImageUpload onImageUpload={onImageUpload} />
+                      <ClientOnly>
+                        {() => <LastSavedIndicator />}
+                      </ClientOnly>
                     </div>
                     {input.length > 3 ? (
                       <div className="text-xs text-bolt-elements-textTertiary">
@@ -237,6 +247,11 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     ) : null}
                   </div>
                 </div>
+                {imageFile && (
+                  <div className="px-4 pb-2 text-sm text-bolt-elements-textSecondary">
+                    Image attached: {imageFile.name}
+                  </div>
+                )}
                 <div className="bg-bolt-elements-background-depth-1 pb-6">{/* Ghost Element */}</div>
               </div>
             </div>
